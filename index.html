@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Шаховий клуб «Гамбіт» — заняття в школі</title>
+  <meta name="description" content="Групові заняття з шахів від клубу «Гамбіт» у школі. 1 500 грн на місяць, двічі на тиждень по годині.">
+  <link rel="icon" href="assets/gambit-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbf9f5;
+      --surface: #ffffff;
+      --surface-alt: #f3eee6;
+      --ink: #2a2521;
+      --muted: #6b625a;
+      --brown: #7a6659;
+      --brown-dark: #5c4b40;
+      --yellow: #fff200;
+      --yellow-soft: #fff9b8;
+      --line: #e6dfd4;
+      --radius: 16px;
+      --shadow: 0 1px 2px rgba(42, 37, 33, .05), 0 8px 24px rgba(42, 37, 33, .06);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    h1, h2, h3 { font-family: "Lora", Georgia, serif; line-height: 1.2; margin: 0 0 .5em; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+    h3 { font-size: 1.2rem; }
+    p { margin: 0 0 1em; }
+    a { color: var(--brown-dark); }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+    /* Header */
+    header.top {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(251, 249, 245, .92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 700; }
+    .brand img { width: 44px; height: 44px; }
+    nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: .95rem; margin-left: 20px; }
+    nav a:hover { color: var(--ink); }
+    @media (max-width: 720px) { nav { display: none; } }
+
+    /* Hero */
+    .hero { padding: 56px 0 64px; background:
+      linear-gradient(180deg, var(--bg) 0%, var(--surface-alt) 100%); }
+    .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+    .eyebrow { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--brown-dark); background: var(--yellow-soft); padding: 4px 10px; border-radius: 999px; margin-bottom: 16px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    .hero p.lead { font-size: 1.15rem; color: var(--muted); max-width: 34em; }
+    .hero-logo { width: 100%; max-width: 380px; justify-self: center; filter: drop-shadow(0 12px 24px rgba(92, 75, 64, .15)); }
+    .btn { display: inline-block; background: var(--brown-dark); color: #fff; text-decoration: none; font-weight: 700;
+      padding: 14px 24px; border-radius: 12px; margin-top: 8px; }
+    .btn:hover { background: var(--ink); }
+    .btn.ghost { background: transparent; color: var(--brown-dark); border: 2px solid var(--brown); margin-left: 8px; }
+    .btn.ghost:hover { background: var(--surface); }
+    @media (max-width: 800px) {
+      .hero .wrap { grid-template-columns: 1fr; }
+      .hero-logo { max-width: 240px; order: -1; }
+      .btn.ghost { margin-left: 0; }
+    }
+
+    section { padding: 64px 0; }
+    section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .section-lead { color: var(--muted); max-width: 40em; margin-bottom: 32px; }
+
+    /* Cards */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 800px) { .grid-3 { grid-template-columns: 1fr; } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+    section.alt .card { background: var(--bg); }
+    .card .num { font-family: "Lora", serif; font-size: 2.2rem; font-weight: 700; color: var(--brown-dark); line-height: 1; margin-bottom: 8px; }
+    .card p { color: var(--muted); margin: 0; }
+    .placeholder { background: var(--yellow-soft); padding: 0 6px; border-radius: 4px; font-weight: 700; color: var(--ink); }
+
+    /* Price */
+    .price-card { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+      background: var(--surface); border: 2px solid var(--brown); border-radius: 20px; padding: 32px; box-shadow: var(--shadow); }
+    .price { font-family: "Lora", serif; font-weight: 700; font-size: clamp(2.6rem, 7vw, 3.6rem); line-height: 1; white-space: nowrap; }
+    .price small { font-family: "Manrope", sans-serif; font-size: 1rem; font-weight: 600; color: var(--muted); display: block; margin-top: 8px; }
+    .price-card ul { margin: 0; padding: 0; list-style: none; }
+    .price-card li { padding: 6px 0 6px 28px; position: relative; }
+    .price-card li::before { content: "♟"; position: absolute; left: 0; color: var(--brown); }
+    @media (max-width: 700px) { .price-card { grid-template-columns: 1fr; padding: 24px; } }
+
+    /* Payment */
+    .pay-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+    @media (max-width: 800px) { .pay-grid { grid-template-columns: 1fr; } }
+    .terms { counter-reset: t; list-style: none; margin: 0; padding: 0; }
+    .terms li { counter-increment: t; position: relative; padding: 0 0 18px 48px; }
+    .terms li:last-child { padding-bottom: 0; }
+    .terms li::before { content: counter(t); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
+      background: var(--yellow); color: var(--ink); font-weight: 700; display: grid; place-items: center; border: 2px solid var(--ink); font-size: .9rem; }
+    .terms strong { display: block; }
+    .terms span { color: var(--muted); }
+    .liqpay { display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+    .liqpay img { width: 220px; height: 56px; object-fit: cover; }
+    .liqpay p { color: var(--muted); margin: 0; }
+
+    /* Contacts */
+    .contacts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    @media (max-width: 700px) { .contacts { grid-template-columns: 1fr; } }
+    .contacts .label { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    .contacts .value { font-size: 1.15rem; font-weight: 600; word-break: break-word; }
+
+    footer { padding: 32px 0; color: var(--muted); font-size: .9rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="assets/gambit-logo.webp" alt="">Шаховий клуб «Гамбіт»</a>
+      <nav>
+        <a href="#about">Про клуб</a>
+        <a href="#trainings">Заняття</a>
+        <a href="#price">Ціна</a>
+        <a href="#payment">Оплата</a>
+        <a href="#contacts">Контакти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow">Шахи в школі · з 2009 року</span>
+          <h1>Групові заняття з шахів від клубу «Гамбіт»</h1>
+          <p class="lead">У «Гамбіті» ми віримо, що шахи — це не лише гра, а спосіб мислити, взаємодіяти й зростати. Наші тренери проводять групові заняття просто у школі — дитині не потрібно нікуди їхати після уроків.</p>
+          <a class="btn" href="#price">Ціна навчання</a>
+          <a class="btn ghost" href="#payment">Умови оплати</a>
+        </div>
+        <img class="hero-logo" src="assets/gambit-logo.webp" alt="Логотип шахового клубу «Гамбіт», Est. 2009">
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <h2>Про клуб</h2>
+        <p class="section-lead">Наша головна мета — виховання вільно й оригінально мислячих дітей в Україні. Ми переконані, що талановитими не народжуються, а виховуються, і щодня доводимо це своєю роботою.</p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="num">з 2009</div>
+            <h3>Досвід</h3>
+            <p>Понад 15 років навчаємо шахам дітей і дорослих. Філії клубу працюють у багатьох школах і ліцеях Києва.</p>
+          </div>
+          <div class="card">
+            <div class="num">♔</div>
+            <h3>Сильні тренери</h3>
+            <p>Старший тренер клубу — Роман Хаєцький, заслужений тренер України, міжнародний майстер.</p>
+          </div>
+          <div class="card">
+            <div class="num">♞</div>
+            <h3>Більше, ніж уроки</h3>
+            <p>Учні грають у клубних турнірах — етапах Кубку «Гамбіту» — та їздять у шахові табори на канікулах.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trainings" class="alt">
+      <div class="wrap">
+        <h2>Як проходять заняття</h2>
+        <p class="section-lead">Шахи розвивають логіку, увагу, пам’ять і вміння приймати рішення. Заняття будуються за ігровою методикою: діти вивчають правила й тактику, розбирають партії та грають між собою під наглядом тренера.</p>
+        <div class="grid-3">
+          <div class="card">
+            <div class="num">1 година</div>
+            <h3>Тривалість тренування</h3>
+            <p>Кожне заняття триває одну годину — оптимально, щоб дитина залишалася зосередженою.</p>
+          </div>
+          <div class="card">
+            <div class="num">2 рази</div>
+            <h3>На тиждень</h3>
+            <p>Регулярні тренування двічі на тиждень дають стабільний прогрес протягом навчального року.</p>
+          </div>
+          <div class="card">
+            <div class="num">Школа №&nbsp;<span class="placeholder">___</span></div>
+            <h3>Місце проведення</h3>
+            <p>Заняття проходять у приміщенні школи, у звичному для дитини середовищі.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="price">
+      <div class="wrap">
+        <h2>Ціна навчання</h2>
+        <p class="section-lead">Одна зрозуміла ціна без додаткових платежів.</p>
+        <div class="price-card">
+          <ul>
+            <li>Групове заняття у школі</li>
+            <li>2 тренування на тиждень по 1 годині</li>
+            <li>Заняття з досвідченим тренером клубу «Гамбіт»</li>
+            <li>Оплата за один календарний місяць</li>
+          </ul>
+          <div class="price">1 500 грн<small>на місяць з одного учня</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="payment" class="alt">
+      <div class="wrap">
+        <h2>Умови оплати</h2>
+        <p class="section-lead">Прозорі правила, щоб батьки точно знали, за що платять.</p>
+        <div class="pay-grid">
+          <div class="card">
+            <ol class="terms">
+              <li><strong>1 500 грн за місяць</strong><span>Оплата здійснюється одноразово за весь місяць навчання.</span></li>
+              <li><strong>Оплата на ФОП</strong><span>Кошти надходять на рахунок ФОП, що представляє клуб.</span></li>
+              <li><strong>Повернення коштів</strong><span>Якщо дитина була присутня менш ніж на двох тренуваннях за місяць, ми повертаємо оплату.</span></li>
+            </ol>
+          </div>
+          <div class="card liqpay">
+            <img src="assets/liqpay-logo.png" alt="LiqPay">
+            <h3>Оплата через LiqPay</h3>
+            <p>Оплатити навчання можна онлайн через платіжний сервіс LiqPay банківською карткою.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="wrap">
+        <h2>Контакти</h2>
+        <p class="section-lead">Маєте питання щодо занять чи оплати? Напишіть нам — відповімо якнайшвидше.</p>
+        <div class="contacts">
+          <div class="card">
+            <div class="label">Email підтримки</div>
+            <div class="value"><a href="mailto:clubgambit@gmail.com">clubgambit@gmail.com</a></div>
+          </div>
+          <div class="card">
+            <div class="label">Адреса клубу</div>
+            <div class="value">Оболонський проспект, 16д<br>Шаховий клуб «Гамбіт»</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© Шаховий клуб «Гамбіт», з 2009 року</span>
+      <a href="https://club-gambit.kiev.ua/" target="_blank" rel="noopener">club-gambit.kiev.ua</a>
+    </div>
+  </footer>
+
+</body>
+</html>
